@@ -42,6 +42,12 @@ const priorityTone: Record<Priority, string> = {
   high: 'high',
 }
 
+const priorityRank: Record<Priority, number> = {
+  high: 0,
+  normal: 1,
+  low: 2,
+}
+
 function createId() {
   return globalThis.crypto?.randomUUID?.() ?? `reminder-${Date.now()}-${Math.random()}`
 }
@@ -162,6 +168,9 @@ function App() {
 
   const sortedReminders = useMemo(() => {
     return [...reminders].sort((a, b) => {
+      const priorityDiff = priorityRank[a.priority] - priorityRank[b.priority]
+      if (priorityDiff !== 0) return priorityDiff
+
       const aDone = a.completed ? 1 : 0
       const bDone = b.completed ? 1 : 0
       if (aDone !== bDone) return aDone - bDone
@@ -383,7 +392,7 @@ function App() {
         <section className="panel list-panel">
           <div className="panel-head">
             <div>
-              <h2>提醒列表</h2>
+              <h2>消息提示列表</h2>
               <p>完成、顺延和删除都在这里处理。</p>
             </div>
 

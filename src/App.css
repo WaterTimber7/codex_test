@@ -2,6 +2,8 @@
   width: min(1180px, calc(100vw - 32px));
   margin: 0 auto;
   padding: 32px 0 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero {
@@ -170,9 +172,24 @@
 }
 
 .content-grid {
-  display: grid;
-  grid-template-columns: minmax(320px, 0.94fr) minmax(0, 1.06fr);
-  gap: 20px;
+  display: contents;
+}
+
+.list-panel {
+  order: -3;
+  margin-bottom: 20px;
+}
+
+.hero {
+  order: -2;
+}
+
+.banner {
+  order: -1;
+}
+
+.form-panel {
+  order: 1;
 }
 
 .panel {
@@ -274,7 +291,7 @@ select:focus {
 
 .task {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: 1fr;
   gap: 14px;
   padding: 16px;
   border: 1px solid var(--border-soft);
@@ -310,7 +327,8 @@ select:focus {
 }
 
 .actions {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-content: start;
 }
